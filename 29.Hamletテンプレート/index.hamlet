@@ -1,0 +1,10 @@
+$doctype 5
+<html>
+  <body>
+    <h1>
+      #{title}
+    <ul>
+      $forall item <- items
+        $if (/=) [T.head item] "f"
+          <li>
+            #{item}
