@@ -1,0 +1,7 @@
+SensorData
+    created UTCTime
+    val1 Int
+    val2 Int
+    val3 Int
+    val4 Int
+    deriving Show
