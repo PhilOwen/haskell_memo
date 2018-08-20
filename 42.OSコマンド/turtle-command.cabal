@@ -1,0 +1,11 @@
+name:                turtle-command
+version:             0.1.0.0
+build-type:          Simple
+cabal-version:       >=1.10
+
+executable turtle-command
+  main-is:             Main.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , turtle
+  default-language:    Haskell2010
