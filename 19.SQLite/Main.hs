@@ -16,14 +16,14 @@ share [mkPersist sqlSettings, mkMigrate "migrateAll"]
 
 main :: IO ()
 main = runStderrLoggingT $ withSqlitePool "log.sqlite" 1 $
-    \pool -> liftIO $ do
-      doMigrate pool
-      forever $ do
-        time <- getCurrentTime
-        record <- readRawData
-        let sensorData = toSensorData time record
-        runSqlPool (insert sensorData) pool
-        threadDelay (800*1000)
+  \pool -> liftIO $ do
+    doMigrate pool
+    forever $ do
+      time <- getCurrentTime
+      record <- readRawData
+      let sensorData = toSensorData time record
+      runSqlPool (insert sensorData) pool
+      threadDelay (800*1000)
         
 toSensorData :: UTCTime -> [Word8] -> SensorData
 toSensorData time ws = SensorData time i j k l

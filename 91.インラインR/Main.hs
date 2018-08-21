@@ -7,17 +7,17 @@ import Data.Vector.SEXP as R(head, toList)
 
 fourtyTwo :: IO Double
 fourtyTwo = runRegion $ do
-    ans <- [r| 42 |]
-    let HExp.Real xHexp = hexp $ (R.cast R.SReal) ans
-    return $ R.head xHexp
+  ans <- [r| 42 |]
+  let HExp.Real xHexp = hexp $ (R.cast R.SReal) ans
+  return $ R.head xHexp
 
 numSeq :: IO [Double]
 numSeq = runRegion $ do
-    ans <- [r| c(1, 2, 3, 6, 11, 23, 47) |]
-    let HExp.Real xHexp = hexp $ (R.cast R.SReal) ans
-    return $ R.toList xHexp
+  ans <- [r| c(1, 2, 3, 6, 11, 23, 47) |]
+  let HExp.Real xHexp = hexp $ (R.cast R.SReal) ans
+  return $ R.toList xHexp
 
 main :: IO ()
 main = do
-    fourtyTwo >>= print
-    numSeq >>= print
+  fourtyTwo >>= print
+  numSeq >>= print
