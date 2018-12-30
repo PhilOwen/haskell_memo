@@ -27,6 +27,7 @@ main = do
     "foo",
     "zoo"]
 
+  putStrLn $ unwords ["#", testString, "について"]
   putStrLn "## oの出現数"
   print (testString =~ "o":: Int)
 

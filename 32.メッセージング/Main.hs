@@ -1,4 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
 import Network.AMQP
 import Control.Monad
 import Control.Concurrent

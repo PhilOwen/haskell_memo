@@ -1,23 +1,33 @@
-import Foreign.R.Type as R
-import Foreign.R as R(cast)
-import Language.R.Instance(runRegion)
 import Language.R.QQ
-import Language.R.HExp as HExp
-import Data.Vector.SEXP as R(head, toList)
+import Language.R.Instance(runRegion)
+import qualified Language.R.HExp  as HExp
+import qualified Foreign.R        as R
+import qualified Foreign.R.Type   as R
+import qualified Data.Vector.SEXP as R
+
+helloR :: IO ()
+helloR =  runRegion $
+  [r| print("hello R") |] >> return ()
 
 fourtyTwo :: IO Double
-fourtyTwo = runRegion $ do
-  ans <- [r| 42 |]
-  let HExp.Real xHexp = hexp $ (R.cast R.SReal) ans
-  return $ R.head xHexp
+fourtyTwo = runRegion $ extractDouble <$> [r|
+    42
+  |]
 
-numSeq :: IO [Double]
-numSeq = runRegion $ do
-  ans <- [r| c(1, 2, 3, 6, 11, 23, 47) |]
-  let HExp.Real xHexp = hexp $ (R.cast R.SReal) ans
-  return $ R.toList xHexp
+sqrt' :: [Double] -> IO [Double]
+sqrt' xs = runRegion $ extractDoubleList <$> [r|
+    sqrt(xs_hs)
+  |]
+
+extractDouble :: R.SomeSEXP s -> Double
+extractDouble x = R.head xHexp where
+  HExp.Real xHexp = HExp.hexp $ (R.cast R.SReal) x
+extractDoubleList :: R.SomeSEXP s -> [Double]
+extractDoubleList xs = R.toList xHexp where
+  HExp.Real xHexp = HExp.hexp $ (R.cast R.SReal) xs
 
 main :: IO ()
 main = do
-  fourtyTwo >>= print
-  numSeq >>= print
+  helloR
+  print =<< fourtyTwo
+  print =<< sqrt' [1..20]

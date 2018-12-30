@@ -1,4 +1,3 @@
-{-# LANGUAGE OverloadedStrings #-}
 import Data.Aeson
 import Data.Text
 import Data.Map

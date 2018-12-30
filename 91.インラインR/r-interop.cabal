@@ -1,13 +1,37 @@
-name:                r-interop
-version:             0.1.0.0
-build-type:          Simple
-cabal-version:       >=1.20
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 320e298eb68a51a03cbdd1ba5ad54a4a1d10e9c11af5b77a9afa2887eee8ea31
+
+name:           r-interop
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/PhilOwen/haskell_memo>
+homepage:       https://github.com/https://github.com/PhilOwen/haskell_memo#readme
+bug-reports:    https://github.com/https://github.com/PhilOwen/haskell_memo/issues
+author:         Phil Owen
+maintainer:     hiroki@yairilab.net
+copyright:      2018 Phil Owen
+license:        MIT
+build-type:     Simple
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/https://github.com/PhilOwen/haskell_memo
 
 executable r-interop
-  main-is:             Main.hs
-  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
-  default-language:    Haskell2010
-  default-extensions:  QuasiQuotes
-                     , GADTs
-  build-depends:       base
-                     , inline-r
+  main-is: Main.hs
+  other-modules:
+      Paths_r_interop
+  default-extensions: QuasiQuotes GADTs
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , inline-c
+    , inline-r
+  default-language: Haskell2010

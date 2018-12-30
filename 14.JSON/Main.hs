@@ -1,5 +1,4 @@
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings, DeriveGeneric #-}
 import Data.Aeson
 import Data.Map(fromList)
 import Data.Text(Text)

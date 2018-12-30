@@ -1,6 +1,3 @@
-{-# LANGUAGE QuasiQuotes #-}
-{-# LANGUAGE TemplateHaskell #-}
-
 import qualified Language.C.Inline as C
 
 C.include "<stdio.h>"
@@ -13,22 +10,25 @@ c_sin x = [C.pure| double {
 
 helloWorld :: IO ()
 helloWorld = [C.exp| void {
-    puts("hello world!");
+  puts("hello from C!");
+} |]
+
+printFibs :: C.CInt -> IO ()
+printFibs n = [C.block| void {
+    int a = 0,
+        b = 1;
+    for (int i=0; i<$(int n); i++) {
+      int c = a + b;
+      a = b;
+      b = c;
+      printf("%d\n", a);
+    }
 } |]
 
 main :: IO ()
 main = do
-    helloWorld
+  helloWorld
 
-    print $ c_sin (3.14/4)
+  putStr $ "PI/4: " ++ (show $ c_sin (3.14/4))
 
-    [C.block| void {
-        int a = 0,
-            b = 1;
-        for (int i=0; i<20; i++) {
-          int c = a + b;
-          a = b;
-          b = c;
-          printf("%d\n", a);
-        }
-    } |]
+  printFibs 20
