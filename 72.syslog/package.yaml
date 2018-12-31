@@ -1,0 +1,26 @@
+name:                hello-syslog
+version:             0.1.0.0
+github:              "https://github.com/PhilOwen/haskell_memo"
+license:             MIT
+author:              "Phil Owen"
+maintainer:          "hiroki@yairilab.net"
+copyright:           "2018 Phil Owen"
+
+extra-source-files:
+- README.md
+
+description:         Please see the README on GitHub at <https://github.com/PhilOwen/haskell_memo>
+
+dependencies:
+- base >= 4.7 && < 5
+- hsyslog
+
+executables:
+  hello-syslog:
+    main:                Main.hs
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    default-extensions:
+    - OverloadedStrings
