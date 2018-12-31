@@ -1,0 +1,5 @@
+resolver: lts-13.0
+packages:
+- '.'
+extra-deps:
+- HDBC-sqlite3-2.3.3.1
